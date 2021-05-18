@@ -1,29 +1,54 @@
 diff --git a/mingw-w64-libass/PKGBUILD b/mingw-w64-libass/PKGBUILD
-index 49ed91154..9f4fc253d 100644
+index 49ed91154..9a542c5ed 100644
 --- a/mingw-w64-libass/PKGBUILD
 +++ b/mingw-w64-libass/PKGBUILD
-@@ -21,6 +21,20 @@ options=('strip' 'staticlibs')
+@@ -13,14 +13,41 @@ license=('ISC')
+ makedepends=("${MINGW_PACKAGE_PREFIX}-gcc"
+              "${MINGW_PACKAGE_PREFIX}-nasm"
+              "${MINGW_PACKAGE_PREFIX}-pkg-config")
+-depends=("${MINGW_PACKAGE_PREFIX}-fribidi"
+-         "${MINGW_PACKAGE_PREFIX}-fontconfig"
+-         "${MINGW_PACKAGE_PREFIX}-freetype"
+-         "${MINGW_PACKAGE_PREFIX}-harfbuzz")
+ options=('strip' 'staticlibs')
  source=(https://github.com/libass/${_realname}/releases/download/${pkgver}/${_realname}-${pkgver}.tar.xz)
  sha256sums=('1cdd39c9d007b06e737e7738004d7f38cf9b1e92843f37307b24e7ff63ab8e53')
  
 +prepare() {
++    FRIBIDI=fribidi.pkg.tar.zst
++    FONTCONFIG=fontconfig.pkg.tar.zst
++    FREETYPE=freetype.pkg.tar.zst
++    HARFBUZZ=harfbuzz.pkg.tar.zst
++    SETUPFLAGS="--overwrite '*' --noconfirm"
 +    cd "${srcdir}"
 +    if [[ $MINGW_ARCH == "mingw64" ]]
 +    then
-+        curl "https://github.com/lifegpc/static-mingw-w64-fribidi/releases/download/1.0.10-2/mingw-w64-x86_64-fribidi-1.0.10-2-any.pkg.tar.zst" -o fribidi.pkg.tar.zst -L
-+        pacman -U fribidi.pkg.tar.zst --overwrite '*' --noconfirm
++        curl "https://github.com/lifegpc/static-mingw-w64-fribidi/releases/download/1.0.10-2/mingw-w64-x86_64-fribidi-1.0.10-2-any.pkg.tar.zst" -o $FRIBIDI -L
++        pacman -U $FRIBIDI $SETUPFLAGS
++        curl "https://github.com/lifegpc/static-mingw-w64-fontconfig/releases/download/2.13.93-3/mingw-w64-x86_64-fontconfig-2.13.93-3-any.pkg.tar.zst" -o $FONTCONFIG -L
++        pacman -U $FONTCONFIG $SETUPFLAGS
++        curl "https://github.com/lifegpc/static-mingw-w64-freetype/releases/download/2.10.4-2/mingw-w64-x86_64-freetype-2.10.4-2-any.pkg.tar.zst" -o $FREETYPE -L
++        pacman -U $FREETYPE $SETUPFLAGS
++        curl "https://github.com/lifegpc/static-mingw-w64-harfbuzz/releases/download/2.8.1-1/mingw-w64-x86_64-harfbuzz-2.8.1-1-any.pkg.tar.zst" -o $HARFBUZZ -L
++        pacman -U $HARFBUZZ $SETUPFLAGS
 +    fi
 +    if [[ $MINGW_ARCH == "mingw32" ]]
 +    then
-+        curl "https://github.com/lifegpc/static-mingw-w64-fribidi/releases/download/1.0.10-2/mingw-w64-i686-fribidi-1.0.10-2-any.pkg.tar.zst" -o fribidi.pkg.tar.zst -L
-+        pacman -U fribidi.pkg.tar.zst --overwrite '*' --noconfirm
++        curl "https://github.com/lifegpc/static-mingw-w64-fribidi/releases/download/1.0.10-2/mingw-w64-i686-fribidi-1.0.10-2-any.pkg.tar.zst" -o $FRIBIDI -L
++        pacman -U $FRIBIDI $SETUPFLAGS
++        curl "https://github.com/lifegpc/static-mingw-w64-fontconfig/releases/download/2.13.93-3/mingw-w64-i686-fontconfig-2.13.93-3-any.pkg.tar.zst" -o $FONTCONFIG -L
++        pacman -U $FONTCONFIG $SETUPFLAGS
++        curl "https://github.com/lifegpc/static-mingw-w64-freetype/releases/download/2.10.4-2/mingw-w64-i686-freetype-2.10.4-2-any.pkg.tar.zst" -o $FREETYPE -L
++        pacman -U $FREETYPE $SETUPFLAGS
++        curl "https://github.com/lifegpc/static-mingw-w64-harfbuzz/releases/download/2.8.1-1/mingw-w64-i686-harfbuzz-2.8.1-1-any.pkg.tar.zst" -o $HARFBUZZ -L
++        pacman -U $HARFBUZZ $SETUPFLAGS
 +    fi
 +}
 +
  build() {
    [[ -d "${srcdir}/build-${MINGW_CHOST}" ]] && rm -rf "${srcdir}/build-${MINGW_CHOST}"
    mkdir -p "${srcdir}/build-${MINGW_CHOST}"
-@@ -30,10 +44,11 @@ build() {
+@@ -30,10 +57,11 @@ build() {
      --build=${MINGW_CHOST} \
      --host=${MINGW_CHOST} \
      --target=${MINGW_CHOST} \
