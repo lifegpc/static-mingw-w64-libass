@@ -1,5 +1,5 @@
 diff --git a/mingw-w64-libass/PKGBUILD b/mingw-w64-libass/PKGBUILD
-index 49ed91154..9a542c5ed 100644
+index 49ed91154..50063a4fd 100644
 --- a/mingw-w64-libass/PKGBUILD
 +++ b/mingw-w64-libass/PKGBUILD
 @@ -13,14 +13,41 @@ license=('ISC')
@@ -27,7 +27,7 @@ index 49ed91154..9a542c5ed 100644
 +        pacman -U $FRIBIDI $SETUPFLAGS
 +        curl "https://github.com/lifegpc/static-mingw-w64-fontconfig/releases/download/2.13.93-3/mingw-w64-x86_64-fontconfig-2.13.93-3-any.pkg.tar.zst" -o $FONTCONFIG -L
 +        pacman -U $FONTCONFIG $SETUPFLAGS
-+        curl "https://github.com/lifegpc/static-mingw-w64-freetype/releases/download/2.10.4-2/mingw-w64-x86_64-freetype-2.10.4-2-any.pkg.tar.zst" -o $FREETYPE -L
++        curl "https://github.com/lifegpc/static-mingw-w64-freetype/releases/download/2.10.4-3/mingw-w64-x86_64-freetype-2.10.4-3-any.pkg.tar.zst" -o $FREETYPE -L
 +        pacman -U $FREETYPE $SETUPFLAGS
 +        curl "https://github.com/lifegpc/static-mingw-w64-harfbuzz/releases/download/2.8.1-1/mingw-w64-x86_64-harfbuzz-2.8.1-1-any.pkg.tar.zst" -o $HARFBUZZ -L
 +        pacman -U $HARFBUZZ $SETUPFLAGS
@@ -38,7 +38,7 @@ index 49ed91154..9a542c5ed 100644
 +        pacman -U $FRIBIDI $SETUPFLAGS
 +        curl "https://github.com/lifegpc/static-mingw-w64-fontconfig/releases/download/2.13.93-3/mingw-w64-i686-fontconfig-2.13.93-3-any.pkg.tar.zst" -o $FONTCONFIG -L
 +        pacman -U $FONTCONFIG $SETUPFLAGS
-+        curl "https://github.com/lifegpc/static-mingw-w64-freetype/releases/download/2.10.4-2/mingw-w64-i686-freetype-2.10.4-2-any.pkg.tar.zst" -o $FREETYPE -L
++        curl "https://github.com/lifegpc/static-mingw-w64-freetype/releases/download/2.10.4-3/mingw-w64-i686-freetype-2.10.4-3-any.pkg.tar.zst" -o $FREETYPE -L
 +        pacman -U $FREETYPE $SETUPFLAGS
 +        curl "https://github.com/lifegpc/static-mingw-w64-harfbuzz/releases/download/2.8.1-1/mingw-w64-i686-harfbuzz-2.8.1-1-any.pkg.tar.zst" -o $HARFBUZZ -L
 +        pacman -U $HARFBUZZ $SETUPFLAGS
